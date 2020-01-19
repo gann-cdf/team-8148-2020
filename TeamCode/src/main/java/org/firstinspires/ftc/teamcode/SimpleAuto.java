@@ -18,11 +18,11 @@ public class SimpleAuto extends LinearOpMode {
 
         timer.reset();
         do {
-            leftFront.setPower(1);
-            leftRear.setPower(1);
-            rightFront.setPower(1);
-            rightRear.setPower(1);
-        } while (timer.time() < 1000);
+            leftFront.setPower(.5);
+            leftRear.setPower(.5);
+            rightFront.setPower(.5);
+            rightRear.setPower(.5);
+        } while (timer.time() < 10);
 
         leftFront.setPower(0);
         leftRear.setPower(0);
