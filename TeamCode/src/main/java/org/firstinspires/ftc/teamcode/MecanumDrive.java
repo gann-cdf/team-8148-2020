@@ -31,6 +31,9 @@ public class MecanumDrive extends OpMode {
     private final double INVERT_REAR_MOTORS = -1;
     private Servo claw;
     private Servo claw2;
+    private DcMotor arm;
+    private DcMotor intake;
+    private Servo push;
 
 
     @Override
@@ -42,7 +45,9 @@ public class MecanumDrive extends OpMode {
         rightRear = hardwareMap.get(DcMotor.class, "right rear");
         claw = hardwareMap.get(Servo.class, "claw");
         claw2 = hardwareMap.get(Servo.class, "claw2");
-        arm = hardwareMap.get(Servo.class, "arm");
+        arm = hardwareMap.get(DcMotor.class, "arm");
+        intake = hardwareMap.get(DcMotor.class, "intake");
+        push = hardwareMap.get(Servo.class, "push");
 
 
     }
@@ -86,6 +91,9 @@ public class MecanumDrive extends OpMode {
         leftRear.setPower(INVERT_REAR_MOTORS * (speed * headingX_adjusted + rotation));
         rightRear.setPower(INVERT_REAR_MOTORS * (speed * headingY_adjusted - rotation));
 
+
+
+
         if (gamepad1.x) {
             claw.setDirection(Servo.Direction.FORWARD);
             claw.setPosition(.5);
@@ -93,6 +101,29 @@ public class MecanumDrive extends OpMode {
         if (gamepad1.y) {
             claw.setDirection(Servo.Direction.REVERSE);
             claw.setPosition(.5);
+        }
+        if (gamepad1.dpad_up){
+            arm.setPower(.5);
+        }
+        if(gamepad1.dpad_down){
+            arm.setPower(.5);
+        }
+        if (gamepad1.dpad_right){
+            intake.setPower(.5);
+        }
+        if (gamepad1.dpad_left){
+            intake.setPower(-.5);
+        }
+        if (gamepad1.a){
+            intake.setPower(0);
+        }
+        if (gamepad2.x){
+            push.setDirection(Servo.Direction.FORWARD);
+            push.setPosition(.5);
+        }
+        if (gamepad2.y) {
+            push.setDirection(Servo.Direction.REVERSE);
+            push.setPosition(.5);
         }
 
     }
